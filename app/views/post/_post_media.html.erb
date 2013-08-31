@@ -21,7 +21,7 @@
       <p><%= f.submit 'Comment', :class=>'btn btn-sm btn-primary' %></p>
       <% end %>
       <% post.comments.each do |c| %>
-      <%= c.body %> <br /> <%= %> <%= c.bit.profile.lastname %>
+      <p><%= c.bit.profile.firstname %> <%= c.bit.profile.lastname %> says: <%= c.body %></p>
       <% end %>
     </div>
   </div>
