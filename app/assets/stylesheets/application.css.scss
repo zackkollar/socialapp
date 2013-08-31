@@ -1,0 +1,59 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+$body-bg:rgba(255, 250, 244, 1);
+$navbar-inverse-bg: #193441;
+$navbar-height:60px;
+$navbar-inverse-link-color:#B7B7B7;
+$navbar-inverse-brand-color: #FFD670;
+$nav-link-padding: 10px 20px;
+$navbar-inverse-link-active-bg:lighten($navbar-inverse-bg, 4%);
+$screen-md:768px;
+@import url(http://fonts.googleapis.com/css?family=Raleway:300);
+@import "twitter/bootstrap";
+.raleway {
+  font-family:'Raleway', sans-serif;
+}
+nav.navbar {
+  border-bottom:lighten($navbar-inverse-bg, 6%);
+}
+ul.navbar-nav li a {
+  -webkit-transition: all .1s ease-in;
+  -moz-transition: all .1s ease-in;
+  -o-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
+.navbar-brand {
+  font-size:24px;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+.navbar-brand:hover {
+  -webkit-translate: rotate(10);
+  -moz-translate: rotate(10);
+  -o-translate: rotate(10);
+  translate: rotate(10);
+}
+.panel {
+  padding-bottom:20px;
+}
+.nav-pills {
+    margin: 0 auto;
+    padding: 0;
+    width: 400px;
+}
+.post-form {
+  padding-top:20px;
+}

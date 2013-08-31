@@ -1,0 +1,25 @@
+<div clas="row">
+  <% if bit_signed_in? %>
+  <% if !current_bit.follows.where({:bit_id => current_bit.id, :follow_id => @profile.bit_id}).empty? %>
+  <% @unfollow = '/follows/'+@profile.bit_id.to_s %>
+  <%= form_tag(@unfollow, method: :delete, multipart: true) do %>
+  <%= hidden_field_tag :bit_id, :value => current_bit.id %>
+  <%= hidden_field_tag :follow_id, :value => @profile.bit_id %>
+  <%= submit_tag "Unfollow", :class => 'btn btn-success col-sm-5' %>
+  <% end %>
+  <% else %>
+  <% if current_bit.id == @profile.bit_id %>
+  <a class="btn btn-success col-sm-5 disabled %>">Can't Follow Yourself</a>
+  <% else %>
+  <%= form_for Follow.new do |f| %>
+  <%= f.hidden_field :bit_id, :value => current_bit.id %>
+  <%= f.hidden_field :follow_id, :value => @profile.bit_id %>
+  <%= f.submit "Follow", :class => 'btn btn-primary col-sm-5' %>
+  <% end %>
+  <% end %>
+  <% end %>
+  <% if bit_signed_in? and current_bit.id == @profile.bit_id %>
+  <a href="<%= @profile.bit_id %>/edit" class="btn btn-warning col-sm-5 pull-right" >Edit Profile</a>
+  <% end %>
+  <% end %>
+</div>

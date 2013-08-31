@@ -1,0 +1,20 @@
+<h2>Edit Profile</h2>
+<hr>
+<%= form_for @profile, :html => { :multipart => true } do |f| %>
+<p><%= f.label :avatar, 'Avatar' %></p>
+<p><%= f.file_field :avatar %></p>
+<% if @profile.avatar? %>
+<p>Current Avatar:</p>
+<p><%= image_tag @profile.avatar.url(:small), :class => 'img-thumbnail' %></p>
+<% end %>
+<p><%= f.label :firstname, 'First Name' %></p>
+<p><%= f.text_field :firstname, :class => 'form-control' %></p>
+<p><%= f.label :lastname, 'Last Name' %></p>
+<p><%= f.text_field :lastname, :class => 'form-control' %></p>
+<p><%= f.label :bio %></p>
+<p><%= f.text_area :bio, :class => 'form-control' %></p>
+<p><%= f.label :location %></p>
+<p><%= f.text_field :location, :class => 'form-control' %></p>
+<%= f.hidden_field :bit_id, :value => current_bit.id %>
+<%= f.submit 'Edit Profile', :class => 'btn btn-success' %>
+<% end %>

@@ -1,0 +1,7 @@
+<%= form_for @post, :html => {:role => 'form'} do |f| %>
+<div class="form-group">
+  <%= f.text_area :body, :class => 'form-control', :placeholder => 'Enter your post here...', :html => {rows:  7} %>
+</div>
+  <%= f.hidden_field :bit_id, :value => current_bit.id %>
+  <%= f.submit 'Submit Post', :class=>'btn btn-primary' %>
+<% end %>

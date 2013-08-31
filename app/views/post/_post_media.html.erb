@@ -1,0 +1,29 @@
+<%= div_for(post, :class => 'media') do %>
+<a class="pull-left" href="/share/<%= post.id %>">
+  <% if post.bit.profile.avatar? %>
+  <%= image_tag post.bit.profile.avatar.url(:thumb), :html => { :width => "64px" } %>
+  <% else %>
+    <img class="media-object" alt="Generic placeholder image" src="http://placehold.it/64x64">
+  <% end %>
+</a>
+<div class="media-body">
+  <h4 class="media-heading">
+    <a href="/bit/<%= post.bit.id %>"><%= post.bit.profile.firstname %> <%= post.bit.profile.lastname %></a> <small class="pull-right"><span class="label label-default"><%= post.created_at.strftime("%H:%M") %></span> <span class="label label-primary"><%= post.created_at.strftime("%d %b. %Y") %></span></small>
+  </h4>
+  <p><%= post.body %></p>
+  <div class="containter well well-small">
+    <div id="comment-form-<%=post.id%>">
+    <%= form_for Comment.new do |f| %>
+      <p><%= f.text_area :body, :class => 'form-control', :placeholder => 'Enter your comment...' %></p>
+      <%= f.hidden_field :bit_id, :value => current_bit.id %>
+      <%= f.hidden_field :post_id, :value => post.id %>
+      <%= f.hidden_field :reply, :value => false %>
+      <p><%= f.submit 'Comment', :class=>'btn btn-sm btn-primary' %></p>
+    <% end %>
+    <% post.comments.each do |c| %>
+    <%= c.body %> <br />
+    <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

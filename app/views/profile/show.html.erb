@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-lg-5">
+    <div class="panel panel-default container">
+      <div class="text-center profile-photo">
+        <% if @profile.avatar? %>
+        <%= image_tag @profile.avatar.url(:medium), :class => "img-thumbnail" %>
+        <% else %>
+        <p><img class="img-thumbnail" src="http://placehold.it/400x400"></p>
+        <% end %>
+        <% if !@profile.blank? %>
+        <h1><%= @profile.firstname %> <%= @profile.lastname %> <small><%= @profile.location %></small></h1>
+        <% else %>
+        <h3><%= @bit.email %></h3>
+        <% end %>
+        <div class="text-center">
+          <p><i>"<%= @profile.bio %>"</i></p>
+        </div>
+      </div>
+      <hr>
+      <%= render 'profile/follow_bar', :follow => @follow %>
+    </div>
+  </div>
+  <% if bit_signed_in? and current_bit.id == @profile.bit_id %>
+  <div class="col-lg-7 col-pull">
+    <div class="panel panel-default container post-form">
+      <%= render 'post/post_form' %>
+    </div>
+  </div>
+  <% end %>
+  <div class="col-lg-7 pull-right">
+    <div class="panel panel-default container">
+      <h2>Recent Posts</h2>
+      <hr>
+      <% if @bit.posts.empty? %>
+      <span class="label label-danger"><big>User has no posts or content to show.</big></span>
+      <% else %>
+      <% @bit.posts.each do |post| %>
+      <%= render 'post/post_media', :post => post %>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
