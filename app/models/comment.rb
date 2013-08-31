@@ -5,4 +5,8 @@ class Comment < ActiveRecord::Base
     @replies = Comment.where({:reply => true, :post_id => self.post_id})
     return @replies
   end
+  def bit
+    @bit = Bit.find_by_id(self.bit_id)
+    return @bit
+  end
 end
