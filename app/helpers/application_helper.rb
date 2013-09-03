@@ -11,4 +11,15 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:bit]
   end
+  
+  def notify(@notif)
+    @notification = Notification.new({:content_id => notif.content_id, 
+                                      :type => notif.type, :bit_id => notif.bit_id, 
+                                      :from_id => notif.from_id})
+    if @notification.save()
+      1+1
+    else
+      flash[:alert] = "
+    end
+  end
 end

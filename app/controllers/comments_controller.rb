@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to :back, :anchor => "post_"+@comment.post_id.to_s
+      redirect_to :back
     else
       redirect_to :root
     end
